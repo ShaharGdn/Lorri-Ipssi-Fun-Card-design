@@ -58,8 +58,6 @@ h1 {
     background-color: darkgray; /* ? */
     text-transform: uppercase;
     color: whitesmoke;
-
-    opacity: 1;
 }
 
 /* The card image */
@@ -70,8 +68,8 @@ h1 {
 }
 
 /* TODO: Make the image semi transparent when the card is hovered */
-.card img {
-    
+.card:hover img{
+    opacity: 0.8;
 }
 /* The card title */
 
@@ -106,7 +104,7 @@ h1 {
    The line should run the full width of the card with 32px margins on both sides
    This line should only become visible when the card is hovered,
    by sliding in from the bottom and transitioning in opacity */
-   .card:hover::after h2{
+.card:hover::after h2{
     
 }
 
