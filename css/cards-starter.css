@@ -1,4 +1,6 @@
-*, *::before, *::after {
+*,
+*::before,
+*::after {
     box-sizing: border-box;
 }
 
@@ -7,7 +9,9 @@
     --image-width: 460px;
 
     --duration-short: 360ms;
+    --duration-long: 600ms;
     --delay-short: 150ms;
+    --delay-long: 250ms;
 }
 
 body {
@@ -29,9 +33,9 @@ h1 {
     margin: 100px auto;
 }
 
-.fa-solid {
-    color: black;
-}
+/* .fa-solid {
+    /* color: black; */
+/* } */ 
 
 /************************ Start Here ************************
 
@@ -53,9 +57,11 @@ h1 {
     grid-template-columns: 460px;
     grid-template-rows: 3fr 5fr 3fr;
 
-    position: relative; /* ? */
-    
-    background-color: darkgray; /* ? */
+    position: relative;
+    /* ? */
+
+    background-color: darkgray;
+    /* ? */
     text-transform: uppercase;
     color: whitesmoke;
 }
@@ -63,23 +69,27 @@ h1 {
 /* The card image */
 
 .card img {
-    grid-area: 1 / 1 / -1 / -1; /* ? */
+    grid-area: 1 / 1 / -1 / -1;
+    /* ? */
     transition: var(--duration-short) ease-out;
 }
 
 /* TODO: Make the image semi transparent when the card is hovered */
-.card:hover img{
+.card:hover img {
+    display: block;
     opacity: 0.8;
 }
+
 /* The card title */
 
 .card h2 {
-    position: relative; /* ? */
+    position: relative;
+    /* ? */
     top: 0;
-    
+
     grid-area: 1 / 1;
     align-self: end;
-    text-align: end; 
+    text-align: end;
 
     margin: 0 1em;
 
@@ -90,12 +100,12 @@ h1 {
     /* animation: slide-up 1s ease-out; */
 }
 
-.card h2 span{
+.card h2 span {
     font-weight: 900;
 }
 
 /* TODO: Make the title slide up 20px when the card is hovered. */
-.card:hover h2{
+.card:hover h2 {
     transition-delay: var(--delay-short);
     translate: 0 -20px;
 }
@@ -104,8 +114,40 @@ h1 {
    The line should run the full width of the card with 32px margins on both sides
    This line should only become visible when the card is hovered,
    by sliding in from the bottom and transitioning in opacity */
-.card:hover::after h2{
-    
+
+.card::after {
+    border-block: 1px solid #fff;
+}
+
+.card:hover::after {
+    content: '';
+    display: block;
+    width: calc(var(--image-width) - var(--margin-inline) * 2);
+    left: var(--margin-inline);
+    top: 80px;
+    opacity: 1;
+    transition-delay: var(--delay-short); 
+}
+
+.card::after {
+    content: '';
+    display: grid; 
+    position: absolute;
+    grid-auto-flow: row;
+    grid-auto-columns: 50px;
+
+    right: 20px;
+    top: 200px;
+    width: calc(var(--image-width) - var(--margin-inline) * 2);
+
+    opacity: 0;
+
+    padding: 1px;
+    background:whitesmoke;
+
+    color: darkgray;
+
+    transition: var(--duration-short) ease-in-out;
 }
 
 
@@ -113,34 +155,45 @@ h1 {
 
 .toolbar {
     display: grid;
-    grid-auto-flow: column;  /* ?? */
-    grid-auto-columns: 50px; /* ?? */
+    grid-auto-flow: column;
+    /* ?? */
+    grid-auto-columns: 50px;
+    /* ?? */
     place-items: center;
 
     grid-area: 2 / 1;
     place-self: start;
 
-    position: absolute; /* ? */
-    right: 80px;        
-    
-    width: 0; /* ?? */
+    position: absolute;
+    /* ? */
+    right: 80px;
+
+    width: 0;
+    /* ?? */
     opacity: 0;
-    
+
     padding: 8px;
     background: linear-gradient(to right, whitesmoke, transparent);
     margin-block-start: 3px;
     color: darkgray;
-    
+
     transition: var(--duration-short) ease-out;
 }
+
 .card:hover .toolbar {
     transition-delay: var(--delay-short);
     opacity: 1;
     right: var(--margin-inline);
-    width: calc(var(--image-width) - var(--margin-inline) * 2); /* ?? */
+    width: calc(var(--image-width) - var(--margin-inline) * 2);
+    /* ?? */
 }
 
 /* TODO: Add styling to the toolbar icons */
+
+.fa-solid {
+    color: peru;
+}
+
 /* When they hovered, scale them up by 30% & give them a pink color */
 /* Add a different animation from animate.css to each one.
    The animations should be triggered 600ms after the hover state starts, 
@@ -153,5 +206,12 @@ h1 {
    from the bottom and transitioning in opacity */
 
 .card p {
+    position: relative;
     grid-area: 3 / 1;
+    opacity: 0;
+}
+
+.card:hover p {
+    opacity: 1;
+    color: white;
 }
