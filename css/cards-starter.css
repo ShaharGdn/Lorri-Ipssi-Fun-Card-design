@@ -1,4 +1,4 @@
-* {
+*, *::before, *::after {
     box-sizing: border-box;
 }
 
@@ -29,6 +29,10 @@ h1 {
     margin: 100px auto;
 }
 
+.fa-solid {
+    color: black;
+}
+
 /************************ Start Here ************************
 
     Implement the TODO's one by one 
@@ -54,6 +58,8 @@ h1 {
     background-color: darkgray; /* ? */
     text-transform: uppercase;
     color: whitesmoke;
+
+    opacity: 1;
 }
 
 /* The card image */
@@ -64,7 +70,9 @@ h1 {
 }
 
 /* TODO: Make the image semi transparent when the card is hovered */
-
+.card img {
+    
+}
 /* The card title */
 
 .card h2 {
@@ -80,6 +88,8 @@ h1 {
     font-size: 32px;
     font-weight: 100;
     transition: var(--duration-short) ease-out;
+
+    /* animation: slide-up 1s ease-out; */
 }
 
 .card h2 span{
@@ -87,11 +97,19 @@ h1 {
 }
 
 /* TODO: Make the title slide up 20px when the card is hovered. */
+.card:hover h2{
+    transition-delay: var(--delay-short);
+    translate: 0 -20px;
+}
 
 /* TODO: Use a pseudo element to give the title a 5px wide line under it.
    The line should run the full width of the card with 32px margins on both sides
    This line should only become visible when the card is hovered,
    by sliding in from the bottom and transitioning in opacity */
+   .card:hover::after h2{
+    
+}
+
 
 /* The toolbar */
 
